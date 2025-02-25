@@ -1,3 +1,4 @@
+import Footer from "@/components/Footer";
 import "./globals.css";
 import { ReactQueryClientProvider } from "@/utils/react-query";
 import { Poppins } from "next/font/google";
@@ -32,7 +33,11 @@ export default function RootLayout({ children }: LayoutProps) {
     <html lang="en">
       <body className={`${poppins.className} ${anta.className}`}>
         <ReactQueryClientProvider>
-          <div className="font-poppins">{children}</div>
+          <div className="flex min-h-screen flex-col justify-between font-poppins">
+            {children}
+            <div className="p-10"></div>
+            <Footer />
+          </div>
         </ReactQueryClientProvider>
       </body>
     </html>

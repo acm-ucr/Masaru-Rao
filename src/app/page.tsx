@@ -3,7 +3,7 @@ import Events from "@/components/home/Events";
 
 const Home = () => {
   return (
-    <div className="h-screen w-screen flex-col items-center justify-center text-white">
+    <div className="flex-col items-center justify-center text-white">
       <Landing />
       <div className="relative">
         <div className="w-full border-8 border-rao-blue" />
