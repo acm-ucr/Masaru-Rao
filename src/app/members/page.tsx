@@ -7,7 +7,7 @@ const Page = () => {
       <div>
         <div className="bg-rao-yellow p-2"></div>
         <div className="bg-rao-blue p-2"></div>
-        <div className="items-left">Personal Biography</div>
+        <div className="items-left">Personal Biography </div>
       </div>
       <div>
         <div></div>
