@@ -6,6 +6,7 @@ import parse, {
   domToReact,
   HTMLReactParserOptions,
   Element,
+  DOMNode,
 } from "html-react-parser";
 
 interface EventWithDescription extends Event {
@@ -51,7 +52,10 @@ const EventCard = ({ event }: EventCardProps) => {
             target="_blank"
             rel="noopener noreferrer"
           >
-            {domToReact(domNode.children, parserOptions)}
+            {domToReact(
+              domNode.children as unknown as DOMNode[],
+              parserOptions,
+            )}
           </a>
         );
       }
