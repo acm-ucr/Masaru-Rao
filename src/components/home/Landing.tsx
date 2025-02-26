@@ -6,20 +6,20 @@ import homeImage from "@/public/home.png";
 const Landing = () => {
   return (
     <div className="flex items-center justify-center bg-gradient-to-b from-rao-gray to-rao-black">
-      <div className="flex w-3/5 flex-col gap-3 pl-10">
-        <div className="font-poppins text-5xl font-extralight text-rao-yellow">
+      <div className="flex w-3/5 flex-col gap-3 p-3 pl-10">
+        <div className="font-poppins text-4xl font-extralight text-rao-yellow">
           Welcome To
         </div>
-        <div className="font-anta text-6xl">
+        <div className="font-anta text-5xl">
           Biomedical Microdevices Laboratory
         </div>
         <div className="flex items-center">
           <MdLocationPin className="ml-2 text-[#3399ff]" />
-          <div className="font-poppins text-2xl font-extralight text-[#3399ff]">
+          <div className="font-poppins text-xl font-extralight text-[#3399ff]">
             University of California, Riverside
           </div>
         </div>
-        <div className="font-poppins text-2xl font-extralight">
+        <div className="font-poppins text-xl font-extralight">
           Within the BML, we seek to develop fundamentally enabling MEMS-based
           process technologies, devices, and instruments that address critical
           needs in public health and facilitate the advancement of understanding
