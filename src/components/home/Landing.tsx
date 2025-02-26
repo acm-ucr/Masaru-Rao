@@ -45,6 +45,7 @@ const Landing = () => {
           layout="responsive"
           width={700}
           height={475}
+          draggable={false}
         />
       </div>
     </div>
