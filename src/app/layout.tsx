@@ -3,6 +3,7 @@ import "./globals.css";
 import { ReactQueryClientProvider } from "@/utils/react-query";
 import { Poppins } from "next/font/google";
 import { Anta } from "next/font/google";
+import Navigation from "@/components/home/Navigation";
 
 export const metadata = {
   title: "Biomedical Microdevices Laboratory",
@@ -27,15 +28,14 @@ const anta = Anta({
 type LayoutProps = {
   children: React.ReactNode;
 };
-
 export default function RootLayout({ children }: LayoutProps) {
   return (
     <html lang="en">
       <body className={`${poppins.className} ${anta.className}`}>
         <ReactQueryClientProvider>
-          <div className="flex min-h-screen flex-col justify-between font-poppins">
+          <div className="flex min-h-screen flex-col justify-between bg-gradient-to-b from-rao-gray to-rao-black font-poppins">
+            <Navigation />
             {children}
-            <div className="p-10"></div>
             <Footer />
           </div>
         </ReactQueryClientProvider>

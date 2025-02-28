@@ -36,7 +36,7 @@ const Events = () => {
         }&singleEvents=true&orderBy=starttime`,
       )
       .then((result) => {
-        console.log(result);
+        console.log("google calendar result", result);
         setEvents(
           result.data.items.map(
             (item: GoogleEvent): EventWithDescription => ({
@@ -53,7 +53,7 @@ const Events = () => {
   const upcomingEvents = getUpcomingEvents(events);
 
   return (
-    <div className="flex flex-col items-center justify-center">
+    <div className="flex flex-col items-center justify-center bg-white">
       <div className="w-2/3">
         <div className="flex w-4/12 flex-col">
           <div className="font-anta text-5xl text-black">News & Events</div>
