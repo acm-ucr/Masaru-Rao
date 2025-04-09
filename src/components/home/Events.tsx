@@ -18,6 +18,7 @@ interface EventWithDescription extends Event {
 
 const Events = () => {
   const [events, setEvents] = useState<EventWithDescription[]>([]);
+  const [archiveClicked, setArchiveClicked] = useState(false);
 
   const getUpcomingEvents = (events: EventWithDescription[]) => {
     return events.sort((a, b) => {
@@ -36,7 +37,6 @@ const Events = () => {
         }&singleEvents=true&orderBy=starttime`,
       )
       .then((result) => {
-        console.log("google calendar result", result);
         setEvents(
           result.data.items.map(
             (item: GoogleEvent): EventWithDescription => ({
@@ -51,6 +51,7 @@ const Events = () => {
   }, []);
 
   const upcomingEvents = getUpcomingEvents(events);
+  console.log("upcomingEvents", events.length);
 
   return (
     <div className="flex flex-col items-center justify-center bg-white">
@@ -59,11 +60,50 @@ const Events = () => {
           <div className="font-anta text-5xl text-black">News & Events</div>
           <hr className="w-full border-2 border-rao-yellow" />
         </div>
-        <div className="mt-10 flex w-1/4 flex-col gap-10">
-          {upcomingEvents.map((event, index) => (
-            <EventCard key={index} event={event} />
-          ))}
-        </div>
+        {events.length > 0 && events.length < 12 ? (
+          <div className="mt-10 grid grid-cols-2 gap-3 md:grid-cols-3">
+            {Array.from({ length: 3 }, (_, colIndex) => (
+              <div key={colIndex} className="flex flex-1 flex-col gap-3">
+                {upcomingEvents
+                  .filter((_, index) => index % 3 === colIndex)
+                  .map((event, index) => (
+                    <EventCard key={index} event={event} />
+                  ))}
+              </div>
+            ))}
+          </div>
+        ) : (
+          <div>
+            <div className="mt-10 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
+              {Array.from({ length: 3 }, (_, colIndex) => (
+                <div key={colIndex} className="flex flex-1 flex-col gap-3">
+                  {archiveClicked
+                    ? upcomingEvents
+                        .filter((_, index) => index % 3 === colIndex)
+                        .map((event, index) => (
+                          <EventCard key={index} event={event} />
+                        ))
+                    : upcomingEvents
+                        .slice(0, 12) // Limit the events to a maximum of 12
+                        .filter((_, index) => index % 3 === colIndex)
+                        .map((event, index) => (
+                          <EventCard key={index} event={event} />
+                        ))}
+                </div>
+              ))}
+            </div>
+            {!archiveClicked && (
+              <div className="flex justify-center">
+                <button
+                  onClick={() => setArchiveClicked(true)}
+                  className="flex items-center justify-center rounded-md border border-black px-6 py-2 text-lg font-normal text-black transition-colors hover:bg-gray-100"
+                >
+                  Archive...
+                </button>
+              </div>
+            )}
+          </div>
+        )}
       </div>
     </div>
   );
